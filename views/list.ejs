@@ -1,0 +1,31 @@
+<%- include('header') -%>
+    <div class="box" id="heading">
+        <h1>
+            <%= kindofDay %>
+        </h1>
+    </div>
+    <div class="box">
+        <% newItems.forEach((element)=>{ %>
+            <form action = "/delete" method="post">
+                <div class="item">
+                    <input type="checkbox" onchange="this.form.submit()" name="Checkbox" value="<%= element._id %>">
+                    <p>
+                        <% if(element.name === undefined) { %>
+                            <%= element.name %>
+                        <%} else {%>
+                            <%= element.name %>
+                        <%}%>
+                        
+                    </p>
+                </div>
+                <input type = "hidden" name="Listname" value="<%= kindofDay %>"></input>
+            </form>
+            
+        <% }) %>
+
+                <form action="/" method="post">
+                    <input type="text" name="newitem" placeholder="New Item" autocomplete="off">
+                    <button type="submit" name="button" value="<%= kindofDay %>">+</button>
+                </form>
+    </div>
+    <%- include('footer') -%>
